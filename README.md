@@ -1,12 +1,12 @@
 # Simple Website on GitHub Pages
 
-This project is a static website in `site/` and deploys automatically to GitHub Pages.
+This project is a static website at the repository root and deploys automatically to GitHub Pages.
 
 ## 1. Edit your site
 Files to edit:
-- `site/index.html`
-- `site/styles.css`
-- `site/app.js`
+- `index.html`
+- `styles.css`
+- `app.js`
 
 ## 2. Create a GitHub repo and push
 From this folder:
@@ -26,7 +26,7 @@ git push -u origin main
 4. Push to `main` again (or run workflow manually in **Actions**).
 
 Workflow file used:
-- `.github/workflows/pages.yml`
+- `.github/workflows/static.yml`
 
 ## 4. Your live URL
 After deploy completes, your site will be available at:
