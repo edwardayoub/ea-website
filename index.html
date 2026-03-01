@@ -1,45 +1,88 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My GitHub Pages Site</title>
-  <meta name="description" content="A simple static site deployed on GitHub Pages." />
+  <title>Edward Ayoub, PhD</title>
+  <meta name="description" content="Edward Ayoub, PhD - TRIUMPH/NCI F32 Postdoctoral Fellow at MD Anderson Cancer Center" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a class="nav-brand" href="index.html">Edward Ayoub, PhD</a>
+      <button class="hamburger" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research Profile</a></li>
+        <li><a href="publications.html">Publications/Posters</a></li>
+        <li><a href="fellowships.html">Fellowships/Scholarships</a></li>
+        <li><a href="education.html">Education/Skills</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <header class="hero">
-    <h1>My Website</h1>
-    <p>This site is deployed on GitHub Pages.</p>
-    <a class="btn" href="#contact">Contact</a>
+    <h1>Edward Ayoub, PhD</h1>
+    <p class="subtitle">TRIUMPH / NCI F32 Postdoctoral Fellow</p>
   </header>
 
-  <main>
-    <section>
-      <h2>About</h2>
+  <main class="container">
+
+    <section class="section-card">
+      <h2>Hello and Welcome</h2>
       <p>
-        This is a simple static website template. Edit <code>index.html</code>
-        to add your content.
+        I am a TRIUMPH and NCI F32 Postdoctoral Fellow at MD Anderson Cancer Center. I received my MS and PhD in Cellular and Molecular Pharmacology and Physiology (CMPP) at University of Rochester Medical Center (URMC) in Rochester, NY.
+      </p>
+      <p>
+        My PhD research project in leukemia was focused on investigating new molecular strategies that improve patients' survival rates, and reduce lethality, especially 3q26 rearrangements leukemia. During my PhD, I successfully received a Ruth L. Kirschstein Predoctoral Individual National Research Service Award (NRSA) (<a href="https://reporter.nih.gov/search/xqMYMJYOhk6HEqbbfoUJxA/project-details/9617629">F31HL143994</a>) from The National Institutes of Health (NIH) / National Heart, Lung, and Blood Institute (NHLBI) to pursue my studies, and published my research entitled
+        "<a href="https://www.nature.com/articles/s41467-018-06613-1">EVI1 overexpression reprograms hematopoiesis via upregulation of Spi1 transcription</a>" in <em>Nature Communications</em>.
+      </p>
+      <p>
+        During my ongoing postdoctoral research at MD Anderson, I have received a Ruth L. Kirschstein Postdoctoral Individual National Research Service Award (NRSA) (<a href="https://reporter.nih.gov/search/xqMYMJYOhk6HEqbbfoUJxA/project-details/10390029">F32CA271697</a>) from the NIH/National Cancer Institute (NCI) to investigate my project entitled: "Targeting Quiescence Pathways to Overcome Chemoresistance in EVI1-Overexpressing Leukemia".
       </p>
     </section>
 
-    <section>
-      <h2>What I Do</h2>
-      <ul>
-        <li>Web projects</li>
-        <li>Automation</li>
-        <li>Homelab experiments</li>
-      </ul>
+    <section class="section-card">
+      <h2>Personal Background</h2>
+      <p>
+        I began my undergraduate studies in 2008 as a Pharmacy student at <strong>The Arab International University (AIU)</strong> in Damascus, Syria. My interest in pharmacology led me to intern at <strong>Bahri Pharmaceuticals</strong>, while studying at AIU. As the political unrest was unfolding in Syria in 2011, it affected my education and it prevented my timely graduation. Thus, I left Syria and relocated to the United States in 2012.
+      </p>
+      <p>
+        Despite my setbacks during my pivotal educational experience, I did not lose hope in making my dream come true. After moving to the US, I applied to <strong>Long Island University (LIU)</strong> and was accepted. Although my transfer was not something planned, I wasn't sure what to anticipate. Eventually, I realized that my potential for succeeding was greatly achievable. Regardless of my initial outlook and the lingual difference, I graduated from LIU with a <strong>4.00 GPA</strong>. I also made the Dean's list for all the semesters that I have attended. I graduated from LIU in Brooklyn, New York with a Bachelors of Science in Biology in 2014.
+      </p>
+      <p>
+        To reach the next level in my career and further strengthen my research skills, I finished my Masters of Science in 2016, and my PhD in Pharmacology at URMC in August 2019.
+      </p>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: hello@example.com</p>
+    <section class="section-card">
+      <h2>Highlights</h2>
+      <div class="highlights">
+        <div class="highlight-card">
+          <div class="number">4+</div>
+          <div class="label">Publications</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">6+</div>
+          <div class="label">Poster Presentations</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">4</div>
+          <div class="label">Major Fellowships</div>
+        </div>
+        <div class="highlight-card">
+          <div class="number">2</div>
+          <div class="label">NIH Awards (F31 &amp; F32)</div>
+        </div>
+      </div>
     </section>
+
   </main>
 
   <footer>
-    <small id="year"></small>
+    <small>&copy; <span id="year"></span></small>
   </footer>
 
   <script src="app.js"></script>
