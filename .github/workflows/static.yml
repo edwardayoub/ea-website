@@ -36,7 +36,7 @@ jobs:
       - name: Prepare site artifact
         run: |
           mkdir -p _site
-          cp index.html styles.css app.js CNAME _site/
+          cp *.html styles.css app.js CNAME _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
