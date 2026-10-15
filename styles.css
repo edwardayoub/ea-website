@@ -568,6 +568,180 @@ img {
   padding-bottom: 0;
 }
 
+.pub-item.pub-hidden {
+  display: none;
+}
+
+/* ── Publications per year chart ── */
+.pub-chart-wrap {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.pub-chart {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  height: 170px;
+}
+
+.pub-bar {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.pub-bar:disabled {
+  cursor: default;
+}
+
+.pub-bar-count {
+  height: 1.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.pub-bar-track {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--border);
+}
+
+.pub-bar-fill {
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+  transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform var(--transition), box-shadow var(--transition);
+  transform-origin: bottom;
+}
+
+.pub-chart.grown .pub-bar-fill {
+  height: var(--h);
+}
+
+.pub-chart.grown .pub-bar:nth-child(odd) .pub-bar-fill {
+  transition-delay: 0.05s;
+}
+
+.seg {
+  flex-basis: 0;
+  min-height: 0;
+}
+
+.seg-journal,
+.swatch-journal {
+  background: var(--accent-light);
+}
+
+.seg-preprint,
+.swatch-preprint {
+  background: var(--gold);
+}
+
+.pub-bar-year {
+  height: 1.4rem;
+  padding-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pub-bar:not(:disabled):hover .pub-bar-fill,
+.pub-bar:focus-visible .pub-bar-fill {
+  box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--accent-glow);
+}
+
+.pub-bar:focus-visible {
+  outline: none;
+}
+
+.pub-bar.dimmed {
+  opacity: 0.3;
+}
+
+.pub-bar.selected .pub-bar-count,
+.pub-bar.selected .pub-bar-year {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.pub-chart-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.pub-legend {
+  display: flex;
+  gap: 1rem;
+}
+
+.pub-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.pub-filter-status strong {
+  color: var(--text);
+}
+
+.pub-clear {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-light);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pub-clear:hover {
+  color: var(--gold);
+}
+
+@media (max-width: 600px) {
+  .pub-chart {
+    gap: 3px;
+    height: 140px;
+  }
+
+  .pub-bar:not(.selected) .pub-bar-year.alt {
+    visibility: hidden;
+  }
+}
+
 .pub-title {
   font-weight: 600;
   font-size: 0.98rem;

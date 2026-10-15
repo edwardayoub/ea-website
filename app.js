@@ -108,6 +108,107 @@ document.addEventListener("DOMContentLoaded", function () {
     requestAnimationFrame(step);
   }
 
+  // ── Publications per Year Chart ──
+  var chart = document.getElementById("pub-chart");
+  if (chart) {
+    var status = document.getElementById("pub-filter-status");
+    var items = Array.prototype.slice.call(
+      document.querySelectorAll("#publications .pub-item")
+    );
+    var byYear = {};
+    items.forEach(function (item) {
+      var dateText = item.querySelector(".pub-date").textContent;
+      var match = dateText.match(/\b(19|20)\d{2}\b/);
+      if (!match) return;
+      var year = match[0];
+      var kind = /preprint/i.test(dateText) ? "preprint" : "journal";
+      item.setAttribute("data-year", year);
+      byYear[year] = byYear[year] || { journal: 0, preprint: 0 };
+      byYear[year][kind]++;
+    });
+
+    var years = Object.keys(byYear).map(Number);
+    var minYear = Math.min.apply(null, years);
+    var maxYear = Math.max(Math.max.apply(null, years), new Date().getFullYear());
+    var maxCount = 0;
+    years.forEach(function (y) {
+      maxCount = Math.max(maxCount, byYear[y].journal + byYear[y].preprint);
+    });
+
+    var selected = null;
+
+    for (var y = minYear; y <= maxYear; y++) {
+      var counts = byYear[y] || { journal: 0, preprint: 0 };
+      var total = counts.journal + counts.preprint;
+      var bar = document.createElement("button");
+      bar.type = "button";
+      bar.className = "pub-bar" + (total === 0 ? " empty" : "");
+      bar.setAttribute("data-year", y);
+      bar.setAttribute("aria-pressed", "false");
+      bar.setAttribute("aria-label", y + ": " + total + " publication" + (total === 1 ? "" : "s"));
+      bar.disabled = total === 0;
+      bar.innerHTML =
+        '<span class="pub-bar-count">' + (total || "") + '</span>' +
+        '<span class="pub-bar-track">' +
+          '<span class="pub-bar-fill" style="--h:' + (total / maxCount * 100) + '%">' +
+            '<span class="seg seg-preprint" style="flex-grow:' + counts.preprint + '"></span>' +
+            '<span class="seg seg-journal" style="flex-grow:' + counts.journal + '"></span>' +
+          '</span>' +
+        '</span>' +
+        '<span class="pub-bar-year' + ((maxYear - y) % 2 ? ' alt' : '') + '">&rsquo;' + String(y).slice(2) + '</span>';
+      bar.title = y + " — " + counts.journal + " journal, " + counts.preprint + " preprint";
+      bar.addEventListener("click", onBarClick);
+      chart.appendChild(bar);
+    }
+
+    function onBarClick(e) {
+      var year = e.currentTarget.getAttribute("data-year");
+      selected = selected === year ? null : year;
+      applyFilter();
+    }
+
+    function applyFilter() {
+      var shown = 0;
+      items.forEach(function (item) {
+        var match = !selected || item.getAttribute("data-year") === selected;
+        item.classList.toggle("pub-hidden", !match);
+        if (match) shown++;
+      });
+      chart.querySelectorAll(".pub-bar").forEach(function (bar) {
+        var on = bar.getAttribute("data-year") === selected;
+        bar.classList.toggle("selected", on);
+        bar.classList.toggle("dimmed", !!selected && !on);
+        bar.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      chart.classList.toggle("has-selection", !!selected);
+      if (selected) {
+        status.innerHTML = "Showing <strong>" + shown + "</strong> from " + selected +
+          ' &middot; <button type="button" class="pub-clear">Show all</button>';
+        status.querySelector(".pub-clear").addEventListener("click", function () {
+          selected = null;
+          applyFilter();
+        });
+      } else {
+        status.innerHTML = "<strong>" + items.length + "</strong> publications &middot; click a year to filter";
+      }
+    }
+
+    applyFilter();
+
+    // Grow bars when the chart scrolls into view
+    if ("IntersectionObserver" in window) {
+      var chartObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          chart.classList.add("grown");
+          chartObserver.disconnect();
+        }
+      }, { threshold: 0.3 });
+      chartObserver.observe(chart);
+    } else {
+      chart.classList.add("grown");
+    }
+  }
+
   // ── Footer Year ──
   var yearEl = document.getElementById("year");
   if (yearEl) {
